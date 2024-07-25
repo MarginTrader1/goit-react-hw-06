@@ -8,11 +8,13 @@ import css from "./ContactList.module.css";
 import { selectNameFilter } from "../../redux/filtersSlice";
 
 const ContactList = () => {
-   const dispatch = useDispatch();
+   const dispatch = useDispatch(); // для отправки экшна в стор 
 
+   //получаем данные из стора 
    const contacts = useSelector(selectContacts);
    const filter = useSelector(selectNameFilter);
 
+   //фильтруем контакты через фильтр 
    let filteredContacts = contacts.filter((item) =>
       item.name.toLowerCase().includes(filter.toLowerCase())
    );

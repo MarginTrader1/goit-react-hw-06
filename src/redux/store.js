@@ -21,11 +21,13 @@ const persistConfig = {
 
 const persistedContactsReducer = persistReducer(persistConfig, contactsReducer);
 
-export const store = configureStore({
+export const store = configureStore({  // стор создают редюсеры из слайсов 
    reducer: {
-      contacts: persistedContactsReducer,
-      filter: filterReducer,
+      contacts: persistedContactsReducer, //
+      filter: filterReducer, 
    },
+
+   // костыль для ошибки на передачу функции в экшне и в диспатче
    middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
          serializableCheck: {
