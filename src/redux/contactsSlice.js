@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { state } from "./data";
+import { mainState } from "./data";
 
 const contactsSlice = createSlice({
    name: "contacts",
-   initialState: state.contacts,
+   initialState: mainState.contacts,
    reducers: {
       addContact(state, action) {
-         state.push(action.payload);
+         state.items = [...state.items, action.payload];
       },
       deleteContact(state, action) {
-         state.filter((item) => item.id !== action.payload);
+         state.items = state.items.filter((item) => item.id !== action.payload);
       },
    },
 });
@@ -19,3 +19,6 @@ export const { addContact, deleteContact } = contactsSlice.actions;
 
 // редюсер слайсу
 export const contactsReducer = contactsSlice.reducer;
+
+// селектор
+export const selectContacts = (state) => state.contacts.items;
